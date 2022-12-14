@@ -47,6 +47,7 @@ const CreateAccount = (props) => {
   return (
     <div className="container">
       <Card>
+        <h4>Start Banking Today</h4>
         <form onSubmit={handleSubmit}>
           <br />
           Name

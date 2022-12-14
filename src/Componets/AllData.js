@@ -1,20 +1,29 @@
 import React, { useEffect, useState } from "react";
 import Card from "./UI/Card";
 import { Button } from "react-bootstrap";
+
+
 const AllData = ({users}) => {
-    const [userData, setUserData] = useState();
-    useEffect(() =>{
+  const [userData, setUserData] = useState("blah blah");
+  
+  useEffect(() =>{
         setUserData(users)
-    }, [users])
- const clickHandler = () =>{
+    }, [users]);
+
+  const showData = () => {
+    <p>{JSON.stringify(userData)}</p>
+  }
+  const noData = () => {
+    <p>Create an account to show user data</p>
+  }
+  const clickHandler = () =>{
     console.log(`in AllData: ${JSON.stringify(userData)}`)
- }
+  }
     return (
       <div className="container">
         <Card>
-           
+           {(!userData ? noData : showData)}
         </Card>
-        <Button onClick={clickHandler}>Show Data</Button>
       </div>  
     )
 };
