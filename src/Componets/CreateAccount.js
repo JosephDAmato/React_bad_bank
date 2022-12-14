@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Card from "./UI/Card";
 import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 
 const CreateAccount = (props) => {
@@ -28,6 +29,12 @@ const CreateAccount = (props) => {
     return true;
   }
 
+  const resetClickHandler = () => {
+    setName('');
+    setEmail('');
+    setPassword('');
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validation(name, "name")) return; 
@@ -40,47 +47,70 @@ const CreateAccount = (props) => {
         password: password,
         balance: 100,
     };
+    resetClickHandler();
     console.log(`In CreateAccount.js: ${JSON.stringify(user)}`);
     props.onSaveUserValue(user);
+    setStatus(false);
+    console.log(status)
   };
 
+  const newAccountHandler= () =>{
+    setStatus(false);
+  }
+  const accountForm =  <> <div className="container">
+  <Card>
+    <h4>Start Banking Today</h4>
+    <form onSubmit={handleSubmit}>
+      <br />
+      Name
+      <br />
+      <input
+        type="text"
+        placeholder="Name"
+        onChange={handleNameChange}
+        value={name}
+      />
+      <br />
+      Email
+      <br />
+      <input
+        type="email"
+        placeholder="Email@Provider.com"
+        onChange={handleEmailChange}
+        value={email}
+      />
+      <br />
+      Password
+      <br />
+      <input
+        type="text"
+        placeholder="Password"
+        onChange={handlePasswordChange}
+        value={password}
+      />
+      <br />
+      <Button type="submit">Submit</Button>
+      <br / >
+      <Button onClick={resetClickHandler}>Reset</Button>
+    </form>
+  </Card>
+</div>
+</>
+  const afterSubmission = <>
+  <div className="container">
+    <Card>
+      <h5>Success! Account Created!</h5>
+      <Button as={Link} to="/Login">Go Login</Button>
+      <br />
+      <Button onClick={newAccountHandler}>Create Another Account</Button>
+    </Card>
+  </div>
+  </>
+
   return (
-    <div className="container">
-      <Card>
-        <h4>Start Banking Today</h4>
-        <form onSubmit={handleSubmit}>
-          <br />
-          Name
-          <br />
-          <input
-            type="text"
-            placeholder="Name"
-            onChange={handleNameChange}
-            value={name}
-          />
-          <br />
-          Email
-          <br />
-          <input
-            type="email"
-            placeholder="Email@Provider.com"
-            onChange={handleEmailChange}
-            value={email}
-          />
-          <br />
-          Password
-          <br />
-          <input
-            type="text"
-            placeholder="Password"
-            onChange={handlePasswordChange}
-            value={password}
-          />
-          <br />
-          <Button type="submit">Submit</Button>
-        </form>
-      </Card>
-    </div>
+    <>
+    {(status ? accountForm : afterSubmission)}</>
+   
   );
 };
 

@@ -7,12 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
 //Imported Components Below
-import Home from "./Home";
-import Login from "./Login";
-import Withdraw from "./Withdraw";
-import Deposit from "./Deposit";
-import CreateAccount from "./CreateAccount";
-import AllData from "./AllData";
+
 
 
 const NavMenu = () => {

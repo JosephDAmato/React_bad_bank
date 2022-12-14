@@ -11,7 +11,8 @@ const Withdraw = () => {
     setWithdrawalBalance(e.target.value)
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefualt();
     if(withdrawBalance > balance){
         return alert("Insufficient Funds")
     }else{

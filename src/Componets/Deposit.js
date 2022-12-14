@@ -3,24 +3,21 @@ import { Button } from "react-bootstrap";
 import { propTypes } from "react-bootstrap/esm/Image";
 import Card from "./UI/Card";
 
-const Deposit = ({users}) => {
-  const [balance, setBalance] = useState(100)
-  const [balanceInput, setBalanceInput] = useState(null);
-  
+const Deposit = ({ users }) => {
+  const [balance, setBalance] = useState('100');
+  const [balanceInput, setBalanceInput] = useState('');
+
   const depositHandleChange = (e) => {
-    setBalanceInput(e.target.value)
+    setBalanceInput(e.target.value);
   };
 
   const submitHandler = (e) => {
+    console.log(users)
     e.preventDefault();
-    if (balanceInput > balance) {
-        return alert("Ammount is greatr than balance");
-    }else {
-        setBalance((preState) => {
-           return balance - balanceInput
-        })
-    }
-  }
+    setBalance((preState) => {
+      return setBalance(+balance + +balanceInput);
+    });
+  };
 
   return (
     <Card>
