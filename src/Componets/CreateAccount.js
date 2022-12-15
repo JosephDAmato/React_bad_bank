@@ -55,7 +55,7 @@ const CreateAccount = (props) => {
   };
 
   const newAccountHandler= () =>{
-    setStatus(false);
+    setStatus(true);
   }
   const accountForm =  <> <div className="container">
   <Card>
